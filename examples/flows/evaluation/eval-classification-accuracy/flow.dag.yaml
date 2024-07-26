@@ -1,21 +1,25 @@
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
 inputs:
   groundtruth:
-    type: string
-    description: Please specify the groundtruth column, which contains the true label
-      to the outputs that your flow produces.
-    default: APP
+    type: list
+    description: Please specify the groundtruth column, which contains the true
+      label to the outputs that your flow produces.
+    default: A quick movement of the enemy will jeopardize six gunboats,Large
+      Language Models are powerful tools for NLP tasks,some prediction
   prediction:
-    type: string
+    type: list
     description: Please specify the prediction column, which contains the predicted
       outputs that your flow produces.
-    default: APP
+    default: Swift movement of the enemy will jeopardize six gunboats,LLMs are
+      powerful tools for NLP tasks,ground truth
 outputs:
-  grade:
-    type: string
-    reference: ${grade.output}
+  grader_result:
+    type: list
+    reference: ${aggregator.output}
 nodes:
-- name: grade
+- name: grader
   type: python
   source:
     type: code
@@ -23,13 +27,10 @@ nodes:
   inputs:
     groundtruth: ${inputs.groundtruth}
     prediction: ${inputs.prediction}
-- name: calculate_accuracy
+- name: aggregator
   type: python
   source:
     type: code
     path: calculate_accuracy.py
   inputs:
-    grades: ${grade.output}
-  aggregation: true
-environment:
-    python_requirements_txt: requirements.txt
+    grades: ${grader.output}

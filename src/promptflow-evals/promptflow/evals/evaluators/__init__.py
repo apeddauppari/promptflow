@@ -18,6 +18,8 @@ from ._groundedness import GroundednessEvaluator
 from ._qa import QAEvaluator
 from ._relevance import RelevanceEvaluator
 from ._similarity import SimilarityEvaluator
+from ._aggregator import evaluate_aggregate, EvalAggregatorType
+from ._grader import EvalGraderType, evaluate_grade
 
 __all__ = [
     "CoherenceEvaluator",
@@ -34,4 +36,8 @@ __all__ = [
     "HateUnfairnessEvaluator",
     "ContentSafetyEvaluator",
     "ContentSafetyChatEvaluator",
+    "EvalGraderType",
+    "evaluate_grade",
+    "evaluate_aggregate",
+    "EvalAggregatorType",
 ]

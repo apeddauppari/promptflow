@@ -1,17 +1,16 @@
 from typing import List
-
-from promptflow.core import log_metric, tool
+from promptflow.core import tool
+from promptflow.evals.evaluators import EvalAggregatorType, evaluate_aggregate
 
 
 @tool
-def calculate_accuracy(grades: List[str]):
-    result = []
-    for index in range(len(grades)):
-        grade = grades[index]
-        result.append(grade)
+def calculate_accuracy(grades: List[str]) -> str:
+    aggregated_score = evaluate_aggregate(EvalAggregatorType.MEAN_AGGREGATOR, grades)
 
-    # calculate accuracy for each variant
-    accuracy = round((result.count("Correct") / len(result)), 2)
-    log_metric("accuracy", accuracy)
-
-    return result
+    result_json = {}
+    result_json["aggregate"] = round(aggregated_score, 2)
+    result_json["grades"] = grades
+    print(
+        f"\n\nPROMPTFLOW >> AGGREGATER FUNCTION :: aggregate_score : {aggregated_score}"
+    )
+    return aggregated_score

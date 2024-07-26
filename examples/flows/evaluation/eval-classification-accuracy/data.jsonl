@@ -1,3 +1,4 @@
-{"groundtruth": "App","prediction": "App"}
-{"groundtruth": "Channel","prediction": "Channel"}
-{"groundtruth": "Academic","prediction": "Academic"}
+{"reference_texts": "A quick movement of the enemy will jeopardize six gunboats","hypothesis": "swifly moving enemy will jeopardize six gunboats"}
+{"reference_texts": "This is a Blue & Gleu Score Grader Test","hypothesis": "Blue and Gleu Score Grader generation"}
+{"reference_texts": "Large Language Models are powerful tools for NLP tasks","hypothesis": "LLMs are powerful tools for NLP tasks"}
+{"reference_texts": "The quick brown fox jumps over the lazy dog","hypothesis": "The quick brown fox jumps over the dog"}
